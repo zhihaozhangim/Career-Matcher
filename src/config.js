@@ -7,7 +7,7 @@ axios.interceptors.request.use(function(config){
 	return config
 })
 
-// 拦截reponse
+// block response (eliminate the toast when the loading is done)
 
 axios.interceptors.response.use(function(config){
 	Toast.hide()
