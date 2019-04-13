@@ -14,6 +14,8 @@ import { login } from '../../redux/user.redux'
 class Login extends React.Component {
     constructor(props) {
         super(props)
+
+        // bind this to the function register and handleLogin
         this.register = this.register.bind(this)
         this.handleLogin = this.handleLogin.bind(this)
     }
@@ -32,6 +34,8 @@ class Login extends React.Component {
             <div>
                 {this.props.redirectTo && this.props.redirectTo !== '/login'
                     ? <Redirect to={this.props.redirectTo} /> : null}
+
+                {/* import logo component */}
                 <Logo/>
                 <WingBlank>
                     <List>

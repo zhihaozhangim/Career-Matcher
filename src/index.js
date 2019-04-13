@@ -21,7 +21,7 @@ const store = createStore(reducers, compose(
     // recommended middleware for basic Redux side effects logic, including complex 
     // synchronous logic that needs access to the store, and simple async logic like 
     // AJAX requests.
-    
+
     applyMiddleware(thunk),
 
     // Use Redux Devtools

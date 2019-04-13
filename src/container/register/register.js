@@ -14,6 +14,7 @@ import Form from '../../component/form/form'
 class Register extends React.Component {
     constructor(props) {
         super(props)
+        // bind this to the function handleRegister.
         this.handleRegister = this.handleRegister.bind(this)
     }
 
@@ -21,6 +22,8 @@ class Register extends React.Component {
         this.props.handleChange('type', 'genius')
     }
 
+    // call the action creater to handle the state of the user
+    
     handleRegister() {
         this.props.register(this.props.state)
     }
@@ -31,8 +34,11 @@ class Register extends React.Component {
         return (
             <div>
                 {this.props.redirectTo ? <Redirect to={this.props.redirectTo} /> : null}
+
+                {/* import logo component */}
                 <Logo/>
                 <List>
+                    {/* display error message if any */}
                     {this.props.msg?<p className='error-msg'>{this.props.msg}</p> : null}
                     <InputItem
                         onChange={v=>this.props.handleChange('user', v)}
@@ -42,7 +48,8 @@ class Register extends React.Component {
                     <InputItem
                         type='password'
                         onChange={v=>this.props.handleChange('pwd', v)}
-                    >Password</InputItem>
+                    >
+                        Password</InputItem>
                     <WhiteSpace/>
                     <InputItem
                         type='password'
