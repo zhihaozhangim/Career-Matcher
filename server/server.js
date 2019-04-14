@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser'
 import model from './model'
 // fix a bug in css
 import csshook from 'css-modules-require-hook/preset'
-//fix a bug in img
+// fix a bug in img
 import assethook from 'asset-require-hook'
 
 assethook({
@@ -43,7 +43,11 @@ io.on('connection', function(socket){
 })
 
 // Open middleware
+
+// used to parse the cookies
 app.use(cookieParser())
+
+// used to parse the body of post json
 app.use(bodyParser.json())
 app.use('/user', userRouter)
 app.use(function(req, res, next) {

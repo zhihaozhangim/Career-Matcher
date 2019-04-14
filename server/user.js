@@ -1,7 +1,9 @@
 const express = require('express')
 const Router = express.Router()
 
+// used to encode the password using md5
 const utils = require('utility')
+
 const model = require('./model')
 const User = model.getModel('user')
 const Chat = model.getModel('chat')
@@ -75,8 +77,8 @@ Router.post('/login', function(req, res) {
     })
 })
 
+// backend logic for register
 Router.post('/register', function(req, res) {
-    console.log(req.body)
     const {user, pwd, type} = req.body
     User.findOne({user: user}, function(err, doc) {
         if (doc) {
@@ -110,6 +112,10 @@ Router.get('/info', function(req, res) {
     })
     
 })
+
+// this function is used to encode the encoded password one more time.
+// 2 layers of md5 + salt. 
+// salt will be hidden when the application is deployed someday
 
 function md5Pwd(pwd) {
     const salt = 'please_suprise_me_with_offer_9382x8yz6!@IUHTAJS~SH'
