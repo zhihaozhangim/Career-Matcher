@@ -28,7 +28,7 @@ class AuthRoute extends React.Component {
         axios.get('/user/info').then(res=>{
             if (res.status === 200) {   // OK
                 if (res.data.code === 0) {  // have login information
-                    this.props.loadData(res.data.data)
+                    this.props.loadData(res.data.data)  // load the data of user (set the state in redux)
                 } else {    // no login information
                     this.props.history.push('/login')
                 }

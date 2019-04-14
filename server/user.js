@@ -66,12 +66,14 @@ Router.post('/update', function(req, res) {
     })
 })
 
+// backend logic for login
 Router.post('/login', function(req, res) {
     const {user, pwd} = req.body
     User.findOne({user, pwd: md5Pwd(pwd)}, _filter, function(err, doc) {
         if (!doc) {
             return res.json({code: 1, msg: 'Incorrect username or password'})
         }
+        // set cookies for user
         res.cookie('userid', doc._id)
         return res.json({code: 0, data: doc})
     })
@@ -84,12 +86,15 @@ Router.post('/register', function(req, res) {
         if (doc) {
             return res.json({code: 1, msg: 'repeated username'})
         }
+
+        // inorder to get the id of the user to set cookie.
         const userModel = new User({user, type, pwd : md5Pwd(pwd)})
         userModel.save(function(e, d) {
             if (e) {
                 return res.json({code: 1, msg: 'wrong backend'})
             }
             const {user, type, _id} = d 
+            // set user cookie
             res.cookie("userid", _id)
             return res.json({code: 0, data: {user, type, _id}})
         })
@@ -98,6 +103,7 @@ Router.post('/register', function(req, res) {
 })
 
 Router.get('/info', function(req, res) {
+    // get users' cookie
     const {userid} = req.cookies
     if (!userid) {
         return res.json({code: 1})

@@ -33,6 +33,7 @@ class Register extends React.Component {
         const RadioItem = Radio.RadioItem
         return (
             <div>
+                {/* Redirect the page if the user register successfully */}
                 {this.props.redirectTo ? <Redirect to={this.props.redirectTo} /> : null}
 
                 {/* import logo component */}
