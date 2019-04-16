@@ -3,8 +3,10 @@ import PropTypes from 'prop-types'
 import { Card, WhiteSpace, WingBlank } from 'antd-mobile'
 import { withRouter } from 'react-router-dom'
 
+// This component is used to display boss or genius info.
 @withRouter
 class UserCard extends React.Component {
+    // userList must be an array
     static propTypes = {
         userList: PropTypes.array.isRequired
     }
