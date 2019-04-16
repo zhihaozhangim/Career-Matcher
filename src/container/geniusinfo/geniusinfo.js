@@ -5,21 +5,21 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { update } from '../../redux/user.redux'
 
-// BossInfo which is used to complete the information for the boss.
 @connect(
     state=>state.user,
     { update }
 )
-class BossInfo extends React.Component {
+class GeniusInfo extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             title: '',
-            desc: ''
+            desc: '',
+            company: '',
+            money: ''
         }
     }
 
-    // Set the value to the given key.
     onChange(key, val) {
         this.setState({
             [key]: val
@@ -31,13 +31,10 @@ class BossInfo extends React.Component {
         const redirect = this.props.redirectTo
         return (
             <div>
-                {/* Avoid redirect if we are already in this page */}
                 {redirect && redirect !== path ? <Redirect to={this.props.redirectTo}></Redirect> : null}
-                {/* NavBar provided by Ant Design */}
                 <NavBar mode="dark">
-                    Complete your Information
+                    Complete your information
                 </NavBar>
-                {/* Pass the function selectAvatar to AvatarSelector component */}
                 <AvatarSelector
                     selectAvatar={(imgname) => {
                         this.setState({
@@ -49,17 +46,11 @@ class BossInfo extends React.Component {
                 <InputItem onChange={(v)=>this.onChange('title', v)}>
                     Position
                 </InputItem>
-                <InputItem onChange={(v)=>this.onChange('company', v)}>
-                    Company
-                </InputItem>
-                <InputItem onChange={(v)=>this.onChange('money', v)}>
-                    Salary
-                </InputItem>
                 <TextareaItem 
                 onChange={(v)=>this.onChange('desc', v)}
                 row={3}
                 autoHeight
-                title='Demand'>
+                title='Introduction'>
                 </TextareaItem>
                 <Button 
                     onClick={()=>{
@@ -71,4 +62,4 @@ class BossInfo extends React.Component {
     }
 }
 
-export default BossInfo
+export default GeniusInfo
