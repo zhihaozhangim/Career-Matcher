@@ -33,13 +33,14 @@ export function user(state=initState, action) {
     }
 }
 
+// action creater that is used for success in login, register or update.
 function authSuccess(obj) {
     // filter pwd
     const {pwd, ...data} = obj
     return {type: AUTH_SUCCESS, payload: data}
 }
 
-// action creater that used to report error
+// action creater that is used to report error
 function errorMsg(msg) {
     return { msg, type:ERROR_MSG }
 }
@@ -52,6 +53,8 @@ export function loadData(userinfo) {
 export function logoutSubmit() {
     return {type: LOGOUT}
 }
+
+// action creater that handles the update logic
 
 export function update(data) {
     return dispatch=>{
