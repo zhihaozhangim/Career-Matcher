@@ -1,11 +1,13 @@
 import React from 'react'
 import { Grid, List } from 'antd-mobile'
+// used this lib to limit the types of parameters of a function
 import PropTypes from 'prop-types'
 
 // Component AvatarSelector that handles the logic to select a avatar.
 
 class AvatarSelector extends React.Component {
     static propTypes = {
+        // selectAvatar can only accept function, not anything else
         selectAvatar: PropTypes.func.isRequired
     }
 
