@@ -5,6 +5,7 @@ import browserCookies from 'browser-cookies'
 import { logoutSubmit } from '../../redux/user.redux'
 import { Redirect } from 'react-router-dom'
 
+// User component which is used to display user information.
 @connect(
     state=>state.user, 
     { logoutSubmit }
@@ -21,6 +22,7 @@ class User extends React.Component {
         alert('Notice', 'Are you sure you want to Logout?', [
             { text: 'Cancel', onPress: () => console.log('cancel') },
             { text: 'Yes', onPress: () => {
+                // erase the cookies
                 browserCookies.erase('userid')
                 this.props.logoutSubmit()
             }},
@@ -31,6 +33,7 @@ class User extends React.Component {
         const props = this.props
         const Item = List.Item
         const Brief = Item.Brief
+        // Handle logout logic
         return props.user ? (
             <div>
                 
