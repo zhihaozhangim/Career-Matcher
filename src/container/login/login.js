@@ -10,6 +10,8 @@ import { login } from '../../redux/user.redux'
     state=>state.user,
     { login }
 )
+// High order component used to inject the handleChange function
+// to the component.
 @Form
 class Login extends React.Component {
     constructor(props) {

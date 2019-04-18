@@ -10,6 +10,8 @@ import Form from '../../component/form/form'
     state=>state.user,
     { register }
 )
+// High order component used to inject the handleChange function
+// to the component.
 @Form
 class Register extends React.Component {
     constructor(props) {
@@ -18,6 +20,7 @@ class Register extends React.Component {
         this.handleRegister = this.handleRegister.bind(this)
     }
 
+    // default value is genius
     componentDidMount() {
         this.props.handleChange('type', 'genius')
     }
