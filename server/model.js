@@ -17,7 +17,9 @@ const models = {
         'money': {'type': String}
     },
 
+    // model of chat
     chat: {
+        // combine from and to, easier to find a specific chat between two users.
         'chatid': {'type': String, require: true},
         'from': {'type': String, require: true},
         'to': {'type': String, require: true},
