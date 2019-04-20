@@ -25,6 +25,8 @@ class Chat extends React.Component {
         }, 0)
     }
 
+    // if already get message from redux, do not need to get
+    // again. Otherwise, we need to get the message.
     componentDidMount() {
         if (!this.props.chat.chatmsg.length) {
             this.props.getMegList()
@@ -66,6 +68,7 @@ class Chat extends React.Component {
         const chatid = getChatId(userid, this.props.user._id)
         const chatmsgs = this.props.chat.chatmsg.filter(v=>v.chatid===chatid)
         return (
+            // display user name
             <div id='chat-page'>
                 <NavBar 
                     mode='dark'

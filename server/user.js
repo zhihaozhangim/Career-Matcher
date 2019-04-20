@@ -12,6 +12,7 @@ const Chat = model.getModel('chat')
 const _filter = {'pwd': 0, '_v': 0}
 
 Router.get('/list', function(req, res) {
+    // using req.query to get the params passed by get method
     const {type} = req.query
 
     User.find({type}, function(err, doc) {
@@ -19,13 +20,18 @@ Router.get('/list', function(req, res) {
     })
 })
 
+// get message list
 Router.get('/getmsglist', function(req, res) {
+    // get the user from cookie.
     const user = req.cookies.userid
     User.find({},function(err, userdoc) {
+        // Get the name and avatar of all users and keep it in an object.
         let users = {}
         userdoc.forEach(v=>{
             users[v._id] = {name: v.user, avatar: v.avatar}
         })
+        // Get all the messages come from or go to the user, then send it to
+        // the front end alongside with the user information.
         Chat.find({'$or':[{from: user}, {to: user}]}, function(err, doc) {
             if (!err) {
                 return res.json({code: 0, msgs: doc, users: users})
@@ -51,13 +57,16 @@ Router.post('/readmsg', function(req, res) {
     })
 })
 
+// backend logic for update.
 Router.post('/update', function(req, res) {
+    // check cookie
     const userid = req.cookies.userid
     if (!userid) {
         return json.dumps({code: 1})
     }
     const body = req.body
     User.findByIdAndUpdate(userid, body, function(err, doc){
+        // merge user and type and body into data
         const data = Object.assign({}, {
             user: doc.user,
             type: doc.type
