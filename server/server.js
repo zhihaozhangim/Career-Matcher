@@ -24,18 +24,22 @@ import { renderToString, renderToNodeStream } from 'react-dom/server'
 import staticPath from '../build/asset-manifest.json'
 import reducer from '../src/reducer'
 
-
 const Chat = model.getModel('chat')
 const app = express()
+
+// work with express
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 
-
+// listen on user's connection, socket is the current request, io is global.
 io.on('connection', function(socket){
+	// when receiving a message from the front end.
 	socket.on('sendmsg', function(data) {
 		const {from, to, msg} = data
+		// create a unique id for two users having a chat
 		const chatid = [from, to].sort().join('_')
 		Chat.create({chatid, from, to, content: msg}, function(err, doc) {
+			// broadcast the message
 			io.emit('recvmsg', Object.assign({}, doc._doc))
 		})
 	})
