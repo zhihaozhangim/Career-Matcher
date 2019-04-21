@@ -62,10 +62,12 @@ class Chat extends React.Component {
         const Item = List.Item
         const users = this.props.chat.users
 
+        // if user not exist, just return without doing anything.
         if (!users[userid]) {
             return null
         }
         const chatid = getChatId(userid, this.props.user._id)
+        // Get only the chat message which belongs to the two users.
         const chatmsgs = this.props.chat.chatmsg.filter(v=>v.chatid===chatid)
         return (
             // display user name

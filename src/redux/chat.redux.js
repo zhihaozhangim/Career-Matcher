@@ -83,6 +83,7 @@ export function getMegList() {
     return (dispatch, getState)=>{
         axios.get('/user/getmsglist').then(res=>{
             if (res.status === 200 && res.data.code === 0) {
+                // Using userid to fix the unread message number problem.
                 const userid = getState().user._id
                 dispatch(msgList(res.data.msgs, res.data.users, userid))
             }
