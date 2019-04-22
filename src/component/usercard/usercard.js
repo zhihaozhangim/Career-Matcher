@@ -4,6 +4,8 @@ import { Card, WhiteSpace, WingBlank } from 'antd-mobile'
 import { withRouter } from 'react-router-dom'
 
 // This component is used to display boss or genius info.
+
+// Change it to a route component
 @withRouter
 class UserCard extends React.Component {
     // userList must be an array

@@ -13,6 +13,7 @@ export function getRedirectPath({type, avatar}) {
     return url
 }
 
+// helper function which generates a unique chat id between two users.
 export function getChatId(userId, targetId) {
     return [userId, targetId].sort().join('_')
 }

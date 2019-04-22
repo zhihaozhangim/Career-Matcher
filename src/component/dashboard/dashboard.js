@@ -19,6 +19,7 @@ class Dashboard extends React.Component {
     // In order to get the amount of unread message when entering
     // the dashboard.
     componentDidMount() {
+        // only get message list for the first time
         if (!this.props.chat.chatmsg.length) {
             this.props.getMegList()
             this.props.recvMsg()
