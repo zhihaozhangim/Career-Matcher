@@ -36,6 +36,8 @@ class Chat extends React.Component {
 
 
     componentWillUnmount() {
+        // mark all the messages with a user to read when 
+        // entering into the chat
         const to = this.props.match.params.user
         this.props.readMsg(to)
     }

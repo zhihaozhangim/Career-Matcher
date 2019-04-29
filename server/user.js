@@ -40,17 +40,17 @@ Router.get('/getmsglist', function(req, res) {
     })    
 })
 
+// handling read message logic
 Router.post('/readmsg', function(req, res) {
     const userid = req.cookies.userid
     const {from} = req.body
-    console.log(userid, from)
     Chat.update(
         {from, to: userid}, 
         {'$set':{read: true}}, 
         {'multi': true},
         function(err, doc) {
         if (!err) {
-            console.log(doc)
+            // @params nModified - how many rows have been modified
             return res.json({code: 0, num: doc.nModified})
         }
         return res.json({code: 1, msg: "Fail to update"})

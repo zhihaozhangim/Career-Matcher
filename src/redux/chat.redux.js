@@ -45,13 +45,20 @@ function msgRecv(msg, userid) {
     return {userid, type: MSG_RECV, payload: msg}
 }
 
+// action creator to read message. num is needed because we need it
+// to update the number of unread message at front end.
+
 function msgRead({from, userid, num}) {
     return {type: MSG_READ, payload:{from, userid, num}}
 }
 
+// function that handles mark message from unread to read logic.
+
 export function readMsg(from) {
+    // need getState to get the current login information.
     return (dispatch, getState)=> {
         axios.post('/user/readmsg', {from}).then(res=>{
+            // get the current user
             const userid = getState().user._id
             if (res.status === 200 && res.data.code === 0) {
                 dispatch(msgRead({userid, from, num: res.data.num}))
