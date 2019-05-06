@@ -1,16 +1,22 @@
+// Using babel-node package to make the backend support es6
+// for server side rendering
+
+// configure .babelrc to make the backend support jsx
+
 import express from 'express'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import model from './model'
+
 // fix a bug in css
 import csshook from 'css-modules-require-hook/preset'
-// fix a bug in img
+// fix a bug in img, support png images.
 import assethook from 'asset-require-hook'
-
 assethook({
 	extensions: ['png']
 })
 
+// handle relative path
 import path from 'path'
 import userRouter from './user'
 
@@ -20,7 +26,12 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router-dom'
 import App from '../src/app'
+
+// For SSR: react component -> div
 import { renderToString, renderToNodeStream } from 'react-dom/server'
+
+// import css (and other staff) from build directory for SSR
+
 import staticPath from '../build/asset-manifest.json'
 import reducer from '../src/reducer'
 
@@ -54,11 +65,12 @@ app.use(cookieParser())
 // used to parse the body of post json
 app.use(bodyParser.json())
 app.use('/user', userRouter)
+
+// middleware 
 app.use(function(req, res, next) {
 	if (req.url.startsWith('/user/') || req.url.startsWith('/static/')) {
 		return next()
 	}
-
 	const store = createStore(reducer, compose(
 		applyMiddleware(thunk),
 	))
@@ -102,6 +114,8 @@ app.use(function(req, res, next) {
 		res.end()
 	})
 })
+
+// load static resource
 app.use('/', express.static(path.resolve('build')))
 server.listen(9093, function() {
 	console.log("Node app start at port 9093")

@@ -8,6 +8,7 @@ import Dashboard from './component/dashboard/dashboard'
 import Chat from './component/chat/chat'
 import { Route, Switch } from 'react-router-dom'
 
+// This component can be used by front end and back end 
 
 class App extends React.Component {
     constructor(props) {
@@ -29,6 +30,7 @@ class App extends React.Component {
         : (
             <div>
                 <AuthRoute></AuthRoute>
+                {/* hit the first matched one and return */}
                 <Switch>
                     <Route path='/bossinfo' component={BossInfo}></Route>
                     <Route path='/geniusinfo' component={GeniusInfo}></Route>
