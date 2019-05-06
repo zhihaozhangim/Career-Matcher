@@ -4,6 +4,7 @@ import { List, InputItem, NavBar, Icon, Grid } from 'antd-mobile'
 import { connect } from 'react-redux'
 import { getMegList, sendMsg, recvMsg, readMsg } from '../../redux/chat.redux'
 import { getChatId } from '../../util'
+// Animation effect
 import QueueAnim from 'rc-queue-anim'
 
 

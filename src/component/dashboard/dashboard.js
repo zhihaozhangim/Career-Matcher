@@ -8,6 +8,7 @@ import Genius from '../../component/genius/genius'
 import User from '../../component/user/user'
 import Msg from '../msg/msg'
 import { getMegList, recvMsg } from '../../redux/chat.redux'
+// Animation effect
 import QueueAnim from 'rc-queue-anim'
 
 @connect(
@@ -66,6 +67,8 @@ class Dashboard extends React.Component {
                 component: User,
             },
         ]
+        // In order to user animation effect, we can only render 
+        // one route. 
         const page = navList.find(v=>v.path===pathname)
         
         return page ? (
