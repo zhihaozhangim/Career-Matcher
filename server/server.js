@@ -24,12 +24,14 @@ import React from 'react'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
+
+// in place of BrowserRouter
 import { StaticRouter } from 'react-router-dom'
 import App from '../src/app'
 
 // For SSR: react component -> div
 // renderToString: above the fold, transfer the code to string
-// renderToNodeStream: above the fold, transfer the code to stream
+// renderToNodeStream: above the fold, transfer the code to stream, better performace (rendering while transfering to front end)
 import { renderToString, renderToNodeStream } from 'react-dom/server'
 
 // import css (and other staff) from build directory for SSR
@@ -79,7 +81,7 @@ app.use(function(req, res, next) {
 
 	let context = {}
 
-	// write the base code to the stream
+	// write the backbone html to the stream for above the fold rendering (using node to render the first screen not the react).
 
 	res.write(`
 		<!DOCTYPE html>

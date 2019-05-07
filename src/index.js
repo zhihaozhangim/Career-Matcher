@@ -29,6 +29,10 @@ const store = createStore(reducers, compose(
     window.devToolsExtension?window.devToolsExtension():f=>f
 ))
 
+// If you call ReactDOM.hydrate() on a node that already has 
+// this server-rendered markup, React will preserve it and only 
+// attach event handlers, allowing you to have a very performant 
+// first-load experience (just adding interactive logic, not rendering).
 ReactDom.hydrate(
     (<Provider store={store}>
         <BrowserRouter>
