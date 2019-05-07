@@ -18,8 +18,8 @@ class App extends React.Component {
         }
     }
 
+    // life cycle used to catch all possible errors
     componentDidCatch(err, info) {
-        console.log(err, info)
         this.setState({
             hasError: true
         })

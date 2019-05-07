@@ -28,6 +28,8 @@ import { StaticRouter } from 'react-router-dom'
 import App from '../src/app'
 
 // For SSR: react component -> div
+// renderToString: above the fold, transfer the code to string
+// renderToNodeStream: above the fold, transfer the code to stream
 import { renderToString, renderToNodeStream } from 'react-dom/server'
 
 // import css (and other staff) from build directory for SSR
@@ -77,6 +79,8 @@ app.use(function(req, res, next) {
 
 	let context = {}
 
+	// write the base code to the stream
+
 	res.write(`
 		<!DOCTYPE html>
 		<html lang="en">
@@ -104,7 +108,10 @@ app.use(function(req, res, next) {
 		</Provider>
 	)
 
+	// pipe the node stream to response
 	markupStream.pipe(res, {end: false})
+
+	// when node stream is all writen, do the rest part
 	markupStream.on('end', ()=>{
 		res.write(`
 				</div>
