@@ -1,4 +1,4 @@
-#### CareerNow - MERN Stack Web Application - A single page full-stack web application designed for jobseekers and recruiters to interact with each other
+#### CareerNow - A single page full-stack web application designed for jobseekers and recruiters to interact with each other
 
 - Implemented front-end with React and Ant Design Mobile component library, which showed recruiters and applicants list based on user’s role, message list, the number of unread message, and user profile 
 
