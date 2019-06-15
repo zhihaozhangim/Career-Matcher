@@ -1,3 +1,15 @@
+#### CareerNow - MERN Stack Web Application - A single page full-stack web application designed for jobseekers and recruiters to interact with each other
+
+- Implemented front-end with React and Ant Design Mobile component library, which showed recruiters and applicants list based on user’s role, message list, the number of unread message, and user profile 
+
+- Used Redux for state management, React Router for route conﬁguration, Socket.io for real-time communication, and axios for  asynchronous HTTP request from the backend
+
+- Created  RESTful API with Express and persisted data in a MongoDB database
+
+- Applied server side rendering to achieve 3 times faster initial page rendering and consistent SEO performance
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
