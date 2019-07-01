@@ -12,7 +12,7 @@ import './config'
 import './index.css'
 
 
-
+// compose is used to combine functions.
 const store = createStore(reducers, compose(
 
     // With a plain basic Redux store, you can only do simple synchronous 
