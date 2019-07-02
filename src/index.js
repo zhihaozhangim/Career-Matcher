@@ -34,7 +34,9 @@ const store = createStore(reducers, compose(
 // attach event handlers, allowing you to have a very performant 
 // first-load experience (just adding interactive logic, not rendering).
 ReactDom.hydrate(
-    (<Provider store={store}>
+    // use provide to inject store to the whole app.
+    (<Provider store={store}>   
+        {/* use react-router to redirect between routes. */}
         <BrowserRouter>
             <App></App>
         </BrowserRouter>

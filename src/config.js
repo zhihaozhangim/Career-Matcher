@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Toast } from 'antd-mobile'
 
-// block request
+// block every request
 axios.interceptors.request.use(function(config){
 	Toast.loading('Loading',0)
 	return config
