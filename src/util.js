@@ -1,12 +1,11 @@
 export function getRedirectPath({type, avatar}) {
 
-    // return the redirect path the user should be redirected to
+    // the redirect path the user should be redirected to based on the type of the user.
 
     let url = (type === 'boss') ? '/boss' : '/genius'
 
-    // if no avatar, it means the user has not finished filled 
-    // in the information
-    
+    // if no avatar, it means the user has not finished all the information
+    // in this case, should be redirected to info page
     if (!avatar) {
         url += 'info'
     }

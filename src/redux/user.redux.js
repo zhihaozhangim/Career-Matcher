@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { getRedirectPath } from '../util'
 
-// constants
-
+// constants needed
 const ERROR_MSG = 'ERROR_MSG'
 const LOGOUT = 'LOGOUT'
 const AUTH_SUCCESS = 'AUTH_SUCCESS'
@@ -10,11 +9,11 @@ const LOAD_DATA = 'LOAD_DATA'
 
 // init state of the user
 const initState = {
-    // used to store the page the user should be redirected to
-    redirectTo: '',
-    msg:'',
-    user:'',
-    type:''
+    // store the page the user should be redirected to, depends on the current state of the user.
+    redirectTo: '', // redirect page
+    msg:'',     // error msg
+    user:'',    // username
+    type:''     // user type
 }
 
 // reducer of user
@@ -33,9 +32,9 @@ export function user(state=initState, action) {
     }
 }
 
-// action creater that is used for success in login, register or update.
+// action creater that is used for auth success.
 function authSuccess(obj) {
-    // filter pwd
+    // filter pwd, we don't want to display it in the console.
     const {pwd, ...data} = obj
     return {type: AUTH_SUCCESS, payload: data}
 }
@@ -45,17 +44,18 @@ function errorMsg(msg) {
     return { msg, type:ERROR_MSG }
 }
 
+// action creater that is used to load data
 export function loadData(userinfo) {
-
     return {type: LOAD_DATA, payload: userinfo}
 }
 
+// action creater that is used to logout
 export function logoutSubmit() {
     return {type: LOGOUT}
 }
 
-// action creater that handles the update logic
-
+// action creater that handles the update user info logic
+// send aync request using axios, enabled by thunk
 export function update(data) {
     return dispatch=>{
         axios.post('/user/update', data).then(res=>{
@@ -69,7 +69,6 @@ export function update(data) {
 }
 
 // action creater that handles the login logic
-
 export function login({user, pwd}) {
     if (!user || !pwd) {
         return errorMsg('Please input your username and password')

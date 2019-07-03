@@ -1,11 +1,13 @@
 import React from 'react'
-import Logo from '../../component/logo/logo'
 import { List, InputItem, WingBlank, WhiteSpace, Button } from 'antd-mobile'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+
+import Logo from '../../component/logo/logo'
 import Form from '../../component/form/form'
 import { login } from '../../redux/user.redux'
 
+// "transform-decorators-legacy" in package.json makes it possible
 @connect(
     state=>state.user,
     { login }
@@ -17,16 +19,17 @@ class Login extends React.Component {
     constructor(props) {
         super(props)
 
-        // bind this to the function register and handleLogin
+        // bind function register and handleLogin to this instance.
         this.register = this.register.bind(this)
         this.handleLogin = this.handleLogin.bind(this)
     }
 
+    // Redirect to register page.
     register() {
-        console.log(this.props)
         this.props.history.push('/register')
     }
 
+    // Call login function in redux.
     handleLogin() {
         this.props.login(this.props.state)
     }
@@ -37,11 +40,13 @@ class Login extends React.Component {
                 {this.props.redirectTo && this.props.redirectTo !== '/login'
                     ? <Redirect to={this.props.redirectTo} /> : null}
 
-                {/* import logo component */}
+                {/* logo component */}
                 <Logo/>
                 <WingBlank>
                     <List>
+                        {/* Show error meesages if there is any. */}
                         {this.props.msg?<p className='error-msg'>{this.props.msg}</p> : null}
+                        
                         <InputItem
                         onChange={v=>this.props.handleChange('user', v)}
                         >Username</InputItem>
@@ -56,7 +61,6 @@ class Login extends React.Component {
                     <Button onClick={this.register} type='primary'>Register</Button>
                 </WingBlank>
             </div>
-
         )
     }
 }

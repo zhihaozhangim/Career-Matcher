@@ -6,7 +6,6 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
 import App from './app'
-
 import reducers from './reducer'
 import './config'
 import './index.css'
@@ -21,11 +20,9 @@ const store = createStore(reducers, compose(
     // recommended middleware for basic Redux side effects logic, including complex 
     // synchronous logic that needs access to the store, and simple async logic like 
     // AJAX requests.
-
     applyMiddleware(thunk),
 
     // Use Redux Devtools
-
     window.devToolsExtension?window.devToolsExtension():f=>f
 ))
 

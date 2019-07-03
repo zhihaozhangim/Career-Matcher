@@ -11,10 +11,11 @@ const MSG_RECV = 'MSG_RECV'
 // mark message as read
 const MSG_READ = 'MSG_READ'
 
+// Init state of chat.
 const initState = {
-    chatmsg:[],
-    users: {},
-    unread:0
+    chatmsg:[], // chat messages
+    users: {},  // chat users
+    unread:0    // # of unread messages
 }
 
 // reducer
@@ -36,13 +37,14 @@ export function chat(state=initState, action) {
     }
 }
 
-// action creator
+// action creator to get message list.
 function msgList(msgs, users, userid) {
     return {type: MSG_LIST, payload: {msgs, users, userid}}
 }
 
+// action creator to receive message.
 function msgRecv(msg, userid) {
-    return {userid, type: MSG_RECV, payload: msg}
+    return {type: MSG_RECV, userid, payload: msg}
 }
 
 // action creator to read message. num is needed because we need it
@@ -53,7 +55,6 @@ function msgRead({from, userid, num}) {
 }
 
 // function that handles mark message from unread to read logic.
-
 export function readMsg(from) {
     // need getState to get the current login information.
     return (dispatch, getState)=> {
@@ -67,18 +68,17 @@ export function readMsg(from) {
     }
 }
 
-// action creator that sends a message to the backend
+// function that sends a message to the backend
 export function sendMsg({from, to, msg}) {
     return dispatch=>{
         socket.emit('sendmsg', {from, to, msg})
     }    
 }
 
-// action creator that handles the logic of receiving for a user. 
+// function that handles the logic of receiving for a user. 
 export function recvMsg() {
     return (dispatch, getState) =>{
         socket.on('recvmsg', function(data) {
-            console.log('recvmsg', data)
             const userid = getState().user._id
             dispatch(msgRecv(data, userid))
         })
