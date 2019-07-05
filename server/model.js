@@ -4,7 +4,7 @@ const DB_URL = 'mongodb://localhost:27017/chat-app';
 mongoose.connect(DB_URL, { useNewUrlParser: true });
 
 const models = {
-    // Model for user
+    // Model of user
     user: {
         'user': {'type': String, require: true},
         'pwd': {'type': String, require: true},
@@ -12,7 +12,8 @@ const models = {
         'avatar': {'type': String},
         'desc': {'type': String},
         'title': {'type': String},
-        // boss
+        
+        // for boss only
         'company': {'type': String},
         'money': {'type': String}
     },

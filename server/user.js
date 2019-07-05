@@ -78,11 +78,13 @@ Router.post('/update', function(req, res) {
 // backend logic for login
 Router.post('/login', function(req, res) {
     const {user, pwd} = req.body
+    // _filter is a projection. Specifies the fields to return using projection operators. Omit this parameter 
+    // to return all fields in the matching document.
     User.findOne({user, pwd: md5Pwd(pwd)}, _filter, function(err, doc) {
         if (!doc) {
             return res.json({code: 1, msg: 'Incorrect username or password'})
         }
-        // set cookies for user
+        // set cookies for user to keep authentication state.
         res.cookie('userid', doc._id)
         return res.json({code: 0, data: doc})
     })
@@ -91,16 +93,18 @@ Router.post('/login', function(req, res) {
 // backend logic for register
 Router.post('/register', function(req, res) {
     const {user, pwd, type} = req.body
+
+    // check whether the username already exists
     User.findOne({user: user}, function(err, doc) {
         if (doc) {
             return res.json({code: 1, msg: 'repeated username'})
         }
 
-        // inorder to get the id of the user to set cookie.
+        // in order to get the id of the user to set cookie.
         const userModel = new User({user, type, pwd : md5Pwd(pwd)})
         userModel.save(function(e, d) {
             if (e) {
-                return res.json({code: 1, msg: 'wrong backend'})
+                return res.json({code: 1, msg: 'something wrong when registering a user'})
             }
             const {user, type, _id} = d 
             // set user cookie
@@ -108,9 +112,9 @@ Router.post('/register', function(req, res) {
             return res.json({code: 0, data: {user, type, _id}})
         })
     })
-
 })
 
+// used by authroute for the very first check of authentication based on user's cookie.
 Router.get('/info', function(req, res) {
     // get users' cookie
     const {userid} = req.cookies
@@ -125,7 +129,6 @@ Router.get('/info', function(req, res) {
             return res.json({code: 0, data: doc})
         }
     })
-    
 })
 
 // this function is used to encode the encoded password one more time.

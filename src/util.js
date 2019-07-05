@@ -1,6 +1,6 @@
 export function getRedirectPath({type, avatar}) {
 
-    // the redirect path the user should be redirected to based on the type of the user.
+    // the redirect path the user should be redirected to based on the state of the user.
 
     let url = (type === 'boss') ? '/boss' : '/genius'
 

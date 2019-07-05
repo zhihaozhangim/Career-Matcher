@@ -10,7 +10,7 @@ const LOAD_DATA = 'LOAD_DATA'
 // init state of the user
 const initState = {
     // store the page the user should be redirected to, depends on the current state of the user.
-    redirectTo: '', // redirect page
+    redirectTo: '', // redirect page. After registration and login, need redirect based on the state of user.
     msg:'',     // error msg
     user:'',    // username
     type:''     // user type
@@ -44,7 +44,8 @@ function errorMsg(msg) {
     return { msg, type:ERROR_MSG }
 }
 
-// action creater that is used to load data
+// action creater that is used to fill the user's data in redux. 
+// The data is from the authroute when user pass the authentication check.
 export function loadData(userinfo) {
     return {type: LOAD_DATA, payload: userinfo}
 }
@@ -90,6 +91,7 @@ export function register({user, pwd, repeatpwd, type}) {
     if (!user || !pwd || !type) {
         return errorMsg('Please input your username and password')
     }
+    // Check whether the pwd is equal to repeated pwd.
     if (pwd !== repeatpwd) {
         return errorMsg('Repeat password must be same with you password')
     }

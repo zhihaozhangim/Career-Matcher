@@ -18,7 +18,7 @@ class Register extends React.Component {
 
     constructor(props) {
         super(props)
-        // bind handleRegister to this instance.
+        // bind handleRegister to this instance. Performance is better than arrow function.
         this.handleRegister = this.handleRegister.bind(this)
     }
 

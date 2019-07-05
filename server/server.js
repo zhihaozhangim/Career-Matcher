@@ -4,8 +4,8 @@
 // configure .babelrc to make the backend support jsx
 
 import express from 'express'
-import bodyParser from 'body-parser'
-import cookieParser from 'cookie-parser'
+import bodyParser from 'body-parser'	// parse post body
+import cookieParser from 'cookie-parser'	// parse cookie
 import model from './model'
 
 // fix a bug in css
@@ -68,6 +68,8 @@ app.use(cookieParser())
 
 // used to parse the body of post json
 app.use(bodyParser.json())
+
+// when see user prefix in url, send the request to userRouter.
 app.use('/user', userRouter)
 
 // middleware 

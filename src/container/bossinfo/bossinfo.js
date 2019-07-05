@@ -37,7 +37,7 @@ class BossInfo extends React.Component {
                 <NavBar mode="dark">
                     Complete your Information
                 </NavBar>
-                {/* Pass the function selectAvatar to AvatarSelector component */}
+                {/* Pass the function selectAvatar to AvatarSelector component, to set avatar in the current component. */}
                 <AvatarSelector
                     selectAvatar={(imgname) => {
                         this.setState({

@@ -15,6 +15,7 @@ class AvatarSelector extends React.Component {
         super(props)
         this.state={}
     }
+
     render() {
         // list of names of images
         const avatarList = 'boy,girl,man,woman,bull,chick,crab,hedgehog,hippopotamus,koala,lemur,pig,tiger,whale,zebra'
@@ -23,6 +24,7 @@ class AvatarSelector extends React.Component {
                                 icon:require(`../img/${v}.png`),
                                 text:v
                             }))
+                            
         // Display the avatar if selected, display the info if not.
         const gridHeader = this.state.icon
                             ? (<div>
@@ -41,7 +43,6 @@ class AvatarSelector extends React.Component {
                         this.props.selectAvatar(elm.text)
                     }} />
                 </List>
-                
             </div>
         )
     }
