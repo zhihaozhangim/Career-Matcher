@@ -16,6 +16,8 @@ class NavLinkBar extends React.Component {
     }
     render() {
         // filter the data we do not want to display
+        // for genius, we don't need genius,
+        // for boss, we don't need boss.
         const navList = this.props.data.filter(v=>!v.hide)
         const {pathname} = this.props.location
         return (

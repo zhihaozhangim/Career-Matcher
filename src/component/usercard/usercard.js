@@ -37,6 +37,7 @@ class UserCard extends React.Component {
                         </Header>
                         <Body>
                             {v.type==='boss' ? <div>Company: {v.company}</div> : null}
+                            {/* display line by line */}
                             {v.desc.split('\n').map(d=>(
                                 <div key={d}>{d}</div>
                             ))}

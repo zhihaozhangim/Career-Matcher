@@ -59,12 +59,15 @@ Router.post('/readmsg', function(req, res) {
 
 // backend logic for update.
 Router.post('/update', function(req, res) {
-    // check cookie
+    // check cookie, handle the logic when user login an account in 
+    // two windows, one has logged out, one is still trying to send
+    // request.
     const userid = req.cookies.userid
     if (!userid) {
         return json.dumps({code: 1})
     }
     const body = req.body
+    // body is the info used to update the user.
     User.findByIdAndUpdate(userid, body, function(err, doc){
         // merge user and type and body into data
         const data = Object.assign({}, {

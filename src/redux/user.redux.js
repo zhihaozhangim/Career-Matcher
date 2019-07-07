@@ -32,7 +32,7 @@ export function user(state=initState, action) {
     }
 }
 
-// action creater that is used for auth success.
+// action creater that is used for auth success after registration, login and update.
 function authSuccess(obj) {
     // filter pwd, we don't want to display it in the console.
     const {pwd, ...data} = obj
@@ -57,6 +57,7 @@ export function logoutSubmit() {
 
 // action creater that handles the update user info logic
 // send aync request using axios, enabled by thunk
+// Used by bossinfo or genius info.
 export function update(data) {
     return dispatch=>{
         axios.post('/user/update', data).then(res=>{

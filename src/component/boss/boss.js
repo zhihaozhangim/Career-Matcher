@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getUserList } from '../../redux/chatuser.redux'
 import UserCard from '../usercard/usercard'
 
+// Boss Component, display all geniuses.
 @connect(
     state=>state.chatuser,
     { getUserList }

@@ -29,6 +29,7 @@ class Dashboard extends React.Component {
 
     render() {
 
+        // Route component.
         const { pathname } = this.props.location
         const user = this.props.user
         

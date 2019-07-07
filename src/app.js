@@ -41,6 +41,7 @@ class App extends React.Component {
                     <Route path='/login' component={Login}></Route>
                     <Route path='/register' component={Register}></Route>
                     <Route path='/chat/:user' component={Chat}></Route>
+                    {/* will return this if none is hit */}
                     <Route component={Dashboard}></Route>
                 </Switch>
             </div>

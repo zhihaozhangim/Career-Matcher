@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { update } from '../../redux/user.redux'
 
+// GeniusInfo which is used to complete the information for the genius.
+
 @connect(
     state=>state.user,
     { update }
@@ -19,7 +21,8 @@ class GeniusInfo extends React.Component {
             money: ''
         }
     }
-
+   
+    // Set the value to the given key.
     onChange(key, val) {
         this.setState({
             [key]: val
