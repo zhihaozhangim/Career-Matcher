@@ -26,7 +26,7 @@ function userList(data) {
     return {type: USER_LIST, payload: data}
 }
 
-// Send aync request to backend to get user list.
+// Send request to backend to get user list.
 export function getUserList(type) {
     return dispatch=>{
         axios.get('/user/list?type='+type).then(res=>{

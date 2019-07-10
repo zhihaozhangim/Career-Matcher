@@ -19,7 +19,7 @@ class Chat extends React.Component {
         this.state={text: '', msg:[]}
     }
 
-    // used to fix a bug in ant design
+    // used to fix a bug in ant design. Recommended by the official document.
     fixCarousel() {
         setTimeout(function(){
             window.dispatchEvent(new Event('resize'))
@@ -30,11 +30,12 @@ class Chat extends React.Component {
     // again. Otherwise, we need to get the message.
     componentDidMount() {
         if (!this.props.chat.chatmsg.length) {
+            // get all users, the message list of current user.
             this.props.getMegList()
+            // establish the sockio connection to receive message.
             this.props.recvMsg()
         } 
     }
-
 
     componentWillUnmount() {
         // mark all the messages with a user to read when 

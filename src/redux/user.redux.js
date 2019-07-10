@@ -26,6 +26,7 @@ export function user(state=initState, action) {
         case ERROR_MSG:
             return {...state, isAuth:false, msg:action.msg}
         case LOGOUT:
+            // erase all state.
             return {...initState, redirectTo:'/login'}
         default:
             return state

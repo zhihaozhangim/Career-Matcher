@@ -11,6 +11,7 @@ import UserCard from '../usercard/usercard'
 class Boss extends React.Component {
 
     componentDidMount() {
+        // get userlist in redux charuser.redux.js
         this.props.getUserList('genius')
     }
 

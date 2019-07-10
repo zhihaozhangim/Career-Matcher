@@ -1,4 +1,7 @@
 import axios from 'axios'
+
+// send request to server port 9093.
+// server and front end are connected in websocket protocol.
 import io from 'socket.io-client'
 const socket = io('ws://localhost:9093') 
 
@@ -87,6 +90,7 @@ export function recvMsg() {
 
 // get message list when entering the chat
 export function getMegList() {
+    // getState could give us all states in redux.
     return (dispatch, getState)=>{
         axios.get('/user/getmsglist').then(res=>{
             if (res.status === 200 && res.data.code === 0) {

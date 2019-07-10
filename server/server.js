@@ -53,12 +53,12 @@ io.on('connection', function(socket){
 		const {from, to, msg} = data
 		// create a unique id for two users having a chat
 		const chatid = [from, to].sort().join('_')
+		// only get messages related to the user.
 		Chat.create({chatid, from, to, content: msg}, function(err, doc) {
 			// broadcast the message
 			io.emit('recvmsg', Object.assign({}, doc._doc))
 		})
 	})
-
 })
 
 // Open middleware
@@ -128,6 +128,8 @@ app.use(function(req, res, next) {
 
 // load static resource
 app.use('/', express.static(path.resolve('build')))
+
+// bind server and express for io
 server.listen(9093, function() {
 	console.log("Node app start at port 9093")
 })

@@ -5,7 +5,7 @@ import browserCookies from 'browser-cookies'
 import { logoutSubmit } from '../../redux/user.redux'
 import { Redirect } from 'react-router-dom'
 
-// User component which is used to display user information.
+// User component which is used to display user me information.
 @connect(
     state=>state.user, 
     { logoutSubmit }
@@ -36,7 +36,6 @@ class User extends React.Component {
         // Handle logout logic
         return props.user ? (
             <div>
-                
                 <Result 
                     img={<img src={require(`../img/${this.props.avatar}.png`)} 
                         style={{width: 50}} alt='' />}
@@ -44,6 +43,7 @@ class User extends React.Component {
                     message={props.type==='boss' ? props.company : null}
                 />
                 <List renderHeader={()=>'Brief Introduction'}>
+                    {/* split into multiple if the desc is very long */}
                     <Item
                         multipleLine
                     >

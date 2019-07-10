@@ -36,35 +36,32 @@ class Msg extends React.Component {
         }))
         return (
             <div>
+                {chatList.map(v=>{
+                    const lastItem = this.getLast(v)
+                    // If I send the message, display the name of the other user
+                    const targetId = v[0].from === userid ? v[0].to : v[0].from
+                    // get the number of unread message
+                    const unreadNum = v.filter(v=>!v.read && v.to === userid).length
+                    if (!userinfo[targetId]) {
+                        return null
+                    }
                 
-                    {chatList.map(v=>{
-                        const lastItem = this.getLast(v)
-                        // If I send the message, display the name of the other user
-                        const targetId = v[0].from === userid ? v[0].to : v[0].from
-                        // get the number of unread message
-                        const unreadNum = v.filter(v=>!v.read && v.to === userid).length
-                        if (!userinfo[targetId]) {
-                            return null
-                        }
-                        // const name = userinfo[targetId] ? userinfo[targetId].name : ''
-                        // const avatar = userinfo[targetId] ? userinfo[targetId].avatar : ''
-                        return (
-                            <List key={lastItem._id}>
-                                <Item
-                                    extra={<Badge text={unreadNum}></Badge>}
-                                    thumb={require(`../img/${userinfo[targetId].avatar}.png`)}
-                                    arrow="horizontal"
-                                    onClick={()=>{
-                                        this.props.history.push(`/chat/${targetId}`)
-                                    }}
-                                >
-                                    {lastItem.content}
-                                    <Brief>{userinfo[targetId].name}</Brief>
-                                </Item>
-                            </List>
-                        )
-                    })}
-                
+                    return (
+                        <List key={lastItem._id}>
+                            <Item
+                                extra={<Badge text={unreadNum}></Badge>}
+                                thumb={require(`../img/${userinfo[targetId].avatar}.png`)}
+                                arrow="horizontal"
+                                onClick={()=>{
+                                    this.props.history.push(`/chat/${targetId}`)
+                                }}
+                            >
+                                {lastItem.content}
+                                <Brief>{userinfo[targetId].name}</Brief>
+                            </Item>
+                        </List>
+                    )
+                })}
             </div>
         )
     }
