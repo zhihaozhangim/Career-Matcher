@@ -47,6 +47,7 @@ Router.post('/readmsg', function(req, res) {
     Chat.update(
         {from, to: userid}, 
         {'$set':{read: true}}, 
+        // modify multi rows
         {'multi': true},
         function(err, doc) {
         if (!err) {

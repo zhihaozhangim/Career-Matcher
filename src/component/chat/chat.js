@@ -39,7 +39,10 @@ class Chat extends React.Component {
 
     componentWillUnmount() {
         // mark all the messages with a user to read when 
-        // entering into the chat
+        // entering into the chat.
+        // Why? In order to make the unread message num right.
+        // it can handle the scenario when user receive a message 
+        // while he/she is chatting with each other.
         const to = this.props.match.params.user
         this.props.readMsg(to)
     }
