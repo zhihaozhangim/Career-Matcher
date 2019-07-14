@@ -29,7 +29,8 @@ const store = createStore(reducers, compose(
 // If you call ReactDOM.hydrate() on a node that already has 
 // this server-rendered markup, React will preserve it and only 
 // attach event handlers, allowing you to have a very performant 
-// first-load experience (just adding interactive logic, not rendering).
+// first-load experience (just adding interactive logic in js, 
+// rendering has been performed on server side).
 ReactDom.hydrate(
     // use provide to inject store to the whole app.
     (<Provider store={store}>   

@@ -1,5 +1,6 @@
-// Using babel-node package to make the backend support es6
-// for server side rendering
+// Using babel-node package to make the backend support es6 and jsx.
+// Check package.json for reference. 
+// It is for server side rendering.
 
 // configure .babelrc to make the backend support jsx
 
@@ -10,7 +11,7 @@ import model from './model'
 
 // fix a bug in css
 import csshook from 'css-modules-require-hook/preset'
-// fix a bug in img, support png images.
+// fix a bug in img, render png images in server.
 import assethook from 'asset-require-hook'
 assethook({
 	extensions: ['png']
@@ -20,12 +21,13 @@ assethook({
 import path from 'path'
 import userRouter from './user'
 
+// Server side support jsx, enabled by .babelrc config.
 import React from 'react'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 
-// in place of BrowserRouter
+// in instead of BrowserRouter
 import { StaticRouter } from 'react-router-dom'
 import App from '../src/app'
 
@@ -83,7 +85,7 @@ app.use(function(req, res, next) {
 
 	let context = {}
 
-	// write the backbone html to the stream for above the fold rendering (using node to render the first screen not the react).
+	// write the backbone html to the stream for server rendering (using node to render the first screen not the react).
 
 	res.write(`
 		<!DOCTYPE html>
