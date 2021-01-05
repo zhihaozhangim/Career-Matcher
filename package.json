@@ -6,7 +6,7 @@
     "antd-mobile": "^2.2.2",
     "asset-require-hook": "^1.2.0",
     "autoprefixer": "7.1.6",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-cli": "^6.26.0",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
